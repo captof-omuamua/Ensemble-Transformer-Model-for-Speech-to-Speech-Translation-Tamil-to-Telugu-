@@ -1,30 +1,43 @@
-# Tamil-to-Telugu Speech-to-Speech Translation for Multilingual Communication
+# Tamil-to-Telugu Speech-to-Speech Translation
 
-## Authors
-1. V Sisir Kausthubh, Amrita Vishwa Vidyapeetham, Coimbatore, India
+**Whisper Tamil ASR · IndicTrans2 text translation · VITS/MMS speech synthesis**
 
-## Abstract
-The growing demand for effective cross-lingual communication highlights the importance of speech-to-speech (S2S) translation technologies. These systems have enormous promise, especially in multilingual countries like India, which has 22 official languages, including Tamil and Telugu. This project focuses on developing a Tamil-to-Telugu S2S translation model that includes three key components: Speech-to-Text (STT), Text Translation (TT), and Text-to-Speech (TTS) modules.
+A historical prototype chaining Tamil speech recognition, Tamil-to-Telugu text translation, and Telugu speech synthesis. This repository consolidates the existing translation project and the recovered semester notebook.
 
-## Methodology
-### Speech-to-Text (STT)
-![STT Architecture](Images/STT.jpeg)
-
-### Text Translation (TT)
-![TT Architecture](Images/T2T_arch.png)
-
-### Text-to-Speech (TTS)
-![TTS Architecture](Images/TTS.jpeg)
+*Archived coursework prototype · Not actively maintained*
 
 ## Pipeline
-![Pipeline](Images/Pipeline.jpeg)
 
+![Speech translation pipeline](Images/Pipeline.jpeg)
 
+| Speech recognition | Text translation | Speech synthesis |
+| --- | --- | --- |
+| ![ASR architecture](Images/STT.jpeg) | ![Translation architecture](Images/T2T_arch.png) | ![TTS architecture](Images/TTS.jpeg) |
 
+These diagrams are retained project artifacts, not newly generated experiment results.
 
-## Conclusion
-The development of a robust Tamil-to-Telugu Speech-to-Speech (S2S) translation system has shown significant promise in overcoming language barriers and facilitating effective multilingual communication. By leveraging the Whisper ASR model for Speech-to-Text (STT), we achieved a notable reduction in Word Error Rate (WER), demonstrating the model's efficiency in handling Tamil speech inputs. The transformer-based Text Translation (TT) model ensured accurate and contextually appropriate translations from Tamil to Telugu, achieving a high BLEU score of 0.57 and a Cosine Similarity of 0.69597. The final Text-to-Speech (TTS) phase, utilizing the VITS-based MMS model, produced natural and intelligible Telugu speech, closely approximating human speech quality with a MOS score of 4.43.
+## Implementation and recovered material
 
-This integrated S2S translation pipeline represents a significant advancement in the field of low-resource language processing, particularly for Dravidian languages. The system's ability to handle noisy environments and maintain high accuracy across all translation phases highlights its potential for real-world applications. Future work will focus on further refining the translation models, expanding the dataset to include more diverse speech samples, and exploring end-to-end S2S translation approaches to enhance system efficiency and performance.
+- [Speech_Processinng.ipynb](Speech_Processinng.ipynb): the existing pipeline notebook.
+- [T to T.ipynb](T%20to%20T.ipynb): the existing text-translation experiment.
+- [whisper_fine_tuning.ipynb](whisper_fine_tuning.ipynb): the existing ASR notebook.
+- [Recovered semester notebook](semester-material/speech-translation.ipynb): an additional archived pipeline version, kept separate to preserve differences.
+- [Semester source notes](semester-material/README.md): model choices, missing artifacts, and report/notebook differences.
 
-Our research underscores the importance of continuous innovation and adaptation of state-of-the-art technologies to address the unique challenges posed by multilingual communication in diverse linguistic landscapes. By enhancing the accessibility and usability of S2S systems, we aim to contribute to a more inclusive and connected world, where language differences no longer impede effective communication.
+## Historical reported results
+
+| Measure | Value recorded in the earlier project README |
+| --- | ---: |
+| BLEU | 0.57 |
+| Cosine similarity | 0.69597 |
+| MOS | 4.43 |
+
+The earlier README reports these values but does not establish evaluation data, BLEU scaling, the human-rating protocol, or reproducible evaluation logs. They are retained as historical claims, not independently verified measurements. No numeric WER is available in that summary.
+
+## Explore the notebooks
+
+Review package installation cells, input audio/text paths, model access, translation direction, and the selected speech-synthesis language before running. Configure access tokens outside source files. Model downloads, training data, and checkpoints are not redistributed by this consolidation.
+
+The recovered report discusses a Wav2Vec recognition variant, while the semester pipeline notebook uses a Whisper Tamil model. These are documented variants; a matching end-to-end evaluation was not reproduced during preparation.
+
+Team names and student identifiers are omitted from the showcase. Upstream model and package terms continue to apply.
