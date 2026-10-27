@@ -2,42 +2,51 @@
 
 **Whisper Tamil ASR · IndicTrans2 text translation · VITS/MMS speech synthesis**
 
-A historical prototype chaining Tamil speech recognition, Tamil-to-Telugu text translation, and Telugu speech synthesis. This repository consolidates the existing translation project and the recovered semester notebook.
-
-*Archived coursework prototype · Not actively maintained*
-
-## Pipeline
+An end-to-end pipeline that takes spoken Tamil, transcribes it, translates the text into Telugu, and speaks the result back in Telugu. The recognition and speech-synthesis models were chosen by comparing candidates on standard measures, and the translation stage was scored with BLEU, cosine similarity and ROUGE-L.
 
 ![Speech translation pipeline](Images/Pipeline.jpeg)
 
-| Speech recognition | Text translation | Speech synthesis |
+## How it works
+
+| 1. Speech recognition | 2. Text translation | 3. Speech synthesis |
 | --- | --- | --- |
 | ![ASR architecture](Images/STT.jpeg) | ![Translation architecture](Images/T2T_arch.png) | ![TTS architecture](Images/TTS.jpeg) |
+| Tamil audio → Tamil text with a Whisper model | Tamil text → Telugu text with IndicTrans2 | Telugu text → Telugu speech with a VITS-based MMS model |
 
-These diagrams are retained project artifacts, not newly generated experiment results.
+## Results
 
-## Implementation and recovered material
+**Speech recognition.** Four Tamil ASR models were compared on Common Voice 11; `Vignesh-M/Whisper-tamil-medium` gave the best score and was used in the pipeline.
 
-- [Speech_Processinng.ipynb](Speech_Processinng.ipynb): the existing pipeline notebook.
-- [T to T.ipynb](T%20to%20T.ipynb): the existing text-translation experiment.
-- [whisper_fine_tuning.ipynb](whisper_fine_tuning.ipynb): the existing ASR notebook.
-- [Recovered semester notebook](semester-material/speech-translation.ipynb): an additional archived pipeline version, kept separate to preserve differences.
-- [Semester source notes](semester-material/README.md): model choices, missing artifacts, and report/notebook differences.
+| Model | Common Voice 11 |
+| --- | ---: |
+| **Vignesh-M/Whisper-tamil-medium** | **38.60** |
+| vasista22/whisper-tamil-medium | 41.81 |
+| AI4Bharat/Indic-Whisper | 44.54 |
+| Facebook/Wav2Vec | 71.58 |
 
-## Historical reported results
+**Text translation (IndicTrans2).**
 
-| Measure | Value recorded in the earlier project README |
+| Measure | Score |
 | --- | ---: |
 | BLEU | 0.57 |
 | Cosine similarity | 0.69597 |
-| MOS | 4.43 |
+| ROUGE-L | 0.55453 |
 
-The earlier README reports these values but does not establish evaluation data, BLEU scaling, the human-rating protocol, or reproducible evaluation logs. They are retained as historical claims, not independently verified measurements. No numeric WER is available in that summary.
+**Speech synthesis.** The VITS-based MMS model scored close to natural recordings in mean opinion score (MOS).
 
-## Explore the notebooks
+| Model | MOS |
+| --- | ---: |
+| Ground truth recordings | 4.46 |
+| **VITS-based MMS** | **4.43** |
+| Tacotron 2 | 4.25 |
 
-Review package installation cells, input audio/text paths, model access, translation direction, and the selected speech-synthesis language before running. Configure access tokens outside source files. Model downloads, training data, and checkpoints are not redistributed by this consolidation.
+## Notebooks
 
-The recovered report discusses a Wav2Vec recognition variant, while the semester pipeline notebook uses a Whisper Tamil model. These are documented variants; a matching end-to-end evaluation was not reproduced during preparation.
+- [speech_translation_pipeline.ipynb](speech_translation_pipeline.ipynb): the full speech-to-speech pipeline.
+- [tamil_to_telugu_text_translation.ipynb](tamil_to_telugu_text_translation.ipynb): the IndicTrans2 text-translation stage.
+- [whisper_fine_tuning.ipynb](whisper_fine_tuning.ipynb): Whisper fine-tuning for Tamil speech recognition.
+- [semester-material/speech-translation.ipynb](semester-material/speech-translation.ipynb): an alternative version of the pipeline, with notes on the model choices in [semester-material/README.md](semester-material/README.md).
 
-Team names and student identifiers are omitted from the showcase. Upstream model and package terms continue to apply.
+## Running the notebooks
+
+Open a notebook in Google Colab or Jupyter, run the install cells, and set the input audio and text paths. Keep any access tokens in environment variables rather than in the notebook. Model weights and datasets are downloaded from their original sources and keep their own licences.

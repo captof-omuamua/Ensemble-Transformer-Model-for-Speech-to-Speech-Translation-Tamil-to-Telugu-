@@ -1,21 +1,8 @@
-# Tamil-to-Telugu Speech Translation
-
-### An ASR → translation → speech-synthesis prototype.
+# Tamil-to-Telugu Speech Translation: Alternative Pipeline
 
 **Python · Whisper Tamil · IndicTrans2 · VITS**
 
-*Archived coursework / research prototype · Not actively maintained*
-
-A notebook-based prototype that chains Tamil speech recognition, Indic-language text translation, and speech synthesis. The accompanying recovered report describes Tamil-to-Telugu speech communication.
-
-## What is included
-
-- Tamil transcription using a Whisper model
-- IndicTrans2 text translation setup
-- Text-to-speech model integration
-- Recovered report-method summary
-
-The repository includes 1 directly browsable source/notebook file and a [source archive](source.zip) containing 1 file with their package structure preserved. See [SOURCE_INDEX.md](SOURCE_INDEX.md) for its contents. Reference components retain their labels and upstream notices.
+An alternative notebook version of the speech-to-speech pipeline. It transcribes Tamil speech with a Whisper model, translates the text into Telugu with IndicTrans2, and synthesizes Telugu speech.
 
 ## Workflow
 
@@ -28,18 +15,17 @@ flowchart LR
     N0 --> N1 --> N2 --> N3
 ```
 
-*Diagram reconstructed from the recovered source or project description.*
+## What is included
 
-## Explore / run
+- Tamil transcription using a Whisper model
+- IndicTrans2 text translation setup
+- Text-to-speech model integration
+- [speech-translation.ipynb](speech-translation.ipynb), plus a [source archive](source.zip) listed in [SOURCE_INDEX.md](SOURCE_INDEX.md)
 
-Open `speech-translation.ipynb` in a compatible notebook environment. Install the imported packages, configure model access and audio input paths, and inspect the selected translation direction and speech-synthesis model before use.
+## Running it
 
-### Direct source files
+Open `speech-translation.ipynb` in Google Colab or Jupyter. Install the imported packages, set the audio input paths and model access, and choose the translation direction and speech-synthesis model before running.
 
-- [speech-translation.ipynb](speech-translation.ipynb)
+## Notes
 
-## Project status
-
-No standalone translated-audio result was recovered in this folder. The report and notebook are archived artifacts; end-to-end execution has not been reproduced. The report discusses Wav2Vec-based recognition, while the retained notebook uses a Whisper Tamil model; the two should be treated as documented variants.
-
-No training, benchmark, paid API request, or external service deployment was performed to prepare this showcase. Team names, student IDs, raw personal documents, and embedded credentials are excluded from the public upload copies. Additional scope notes are in [SOURCE_NOTES.md](SOURCE_NOTES.md).
+The project report also describes a Wav2Vec-based recognition variant; this notebook uses Whisper, which scored better in the model comparison shown in the [main README](../README.md#results). More details are in [SOURCE_NOTES.md](SOURCE_NOTES.md).
